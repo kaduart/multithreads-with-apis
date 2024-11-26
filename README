@@ -1,0 +1,54 @@
+API for ZIP Code Lookup
+This repository contains an example application written in Go (Golang) that performs ZIP code lookups using two different APIs: ViaCEP and BrasilAPI. The application uses goroutines and channels to make asynchronous requests and returns the response from the fastest API.
+
+📋 Features
+Queries ZIP codes from multiple APIs.
+Returns the fastest response.
+Displays complete address details based on the response format of each API.
+Error handling and timeout implementation.
+🔧 Requirements
+Go installed (version 1.19 or higher).
+Internet connection to access the APIs.
+🚀 How to Run
+Clone the repository:
+
+bash
+Copy code
+git clone https://github.com/kaduart/multithreads-with-apis.git
+cd multithreads-with-apis
+Build the program:
+
+bash
+Copy code
+go build -o multithreads-with-apis
+Run the generated binary:
+
+bash
+Copy code
+./multithreads-with-apis
+🛠️ Technologies Used
+Language: Go
+Standard Libraries:
+net/http: For making HTTP requests.
+encoding/json: For handling JSON.
+time: For timeout management.
+io: For reading HTTP response bodies.
+strings: For comparing and analyzing API URLs.
+📜 How It Works
+Defining the APIs:
+The code defines two API URLs for ZIP code lookup:
+
+ViaCEP
+BrasilAPI
+Parallel Execution:
+Using goroutines, the program sends requests to both APIs simultaneously.
+
+Communication Channel:
+Each API response is sent to a channel (chan), which is read using a select statement. The first API to respond sends its data to the channel.
+
+Response Handling:
+
+The response is deserialized into a map[string]interface{} to handle differences in the API response formats.
+Address details are displayed based on the responding API.
+Timeout:
+If no API responds within 1 second, the program outputs a timeout message.
